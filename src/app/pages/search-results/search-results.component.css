@@ -1,14 +1,105 @@
-.row {
-  margin-left: 20px;
+.navbar.primary{
+  background: #002A86;
+}
+
+.loc-btn {
+  width: 3vw;
+}
+
+.logo {
+  height: 125px;
+  display: inline-block;
+  margin-top: -45px;
+}
+
+
+
+h1 {
+  display: inline-block;
+  margin-left: 10px;
+  padding-top: 15px;
+  font-size: 3.5rem;
+}
+
+small {
+  display: inline-block;
+}
+
+
+.add-on .input-group-btn > .btn {
+  border-left-width:0;left:-2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* stop the glowing blue shadow */
+.add-on .form-control:focus {
+ box-shadow:none;
+ -webkit-box-shadow:none;
+ border-color:#cccccc;
 }
 
 .input-group {
   width: 25vw;
-  margin-top: 25px;
 }
 
 .search-pane {
   margin-top: 20px;
-
 }
 
+.row {
+  margin-left: 20px;
+}
+
+.form-control{width:25%}
+
+body {
+  padding-top: 50px;
+}
+
+.navbar-brand {
+  line-height:24px;
+  padding-top:10px;
+  padding-bottom:5px;
+  color: #82CCE2;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.navbar-brand small {
+  display:block;
+  font-size:22px;
+  margin-top: 10px;
+  color: #FFCE00;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.nav-logo {
+  margin-left: 20px;
+}
+
+.search-text {
+  width: 12vw;
+  margin-top: 15px;
+}
+
+.top-btns {
+  display: inline-block;
+}
+
+.card {
+  display: inline;
+}
+
+.entity-card:hover {
+  cursor:pointer;
+}
+
+
+.candidate-card:hover {
+  margin-left: 20px;
+  background-color: yellow;
+}
+
+.card-title {
+  font-family: 'Cantarell', sans-serif;
+}

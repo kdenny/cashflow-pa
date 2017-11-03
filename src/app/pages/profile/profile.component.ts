@@ -18,6 +18,25 @@ export class ProfileComponent implements OnInit {
 
   map;
   baseMaps;
+  isGroupOpen = false;
+
+  groups: Array<any> = [
+      {
+          heading: 'Fancy dinner',
+          value: '$135',
+          date: '9/15/2017',
+          from: 'Steve Judgeman',
+          to: 'Suspicious LLC'
+      },
+      {
+          heading: 'Fancy dinner',
+          value: '$135',
+          date: '9/15/2017',
+          from: 'Steve Judgeman',
+          to: 'Suspicious LLC'
+      }
+  ];
+
 
 
   constructor(public api: ApiService, private router: Router) {

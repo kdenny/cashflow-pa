@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { Accordion, AccordionGroup } from './pages/search-results/accordion';
 
 import {ApiService} from './services/api.service';
 
@@ -29,12 +31,19 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     SearchResultsComponent,
-    ProfileComponent
+    ProfileComponent,
+    Accordion,
+    AccordionGroup
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCGkffnTSjs9i0PpPXthYJ93TBSJhJHEnQ",
+      libraries: ["places"]
+    }),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

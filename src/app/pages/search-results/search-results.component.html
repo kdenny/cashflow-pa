@@ -1,11 +1,25 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.js"></script>
 
+<div class="navbar navbar-inverse bg-primary navbar-fixed-top" style="background-color: #002A86!important">
+  <div class="container nav-logo">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><img class="logo" src="assets/cashflow_logo.png"/><h1 style="font-family: 'Fjalla One', sans-serif;">PA Cash Flow<small>Follow the money trail around PA politics</small></h1></a>
+    </div>
+  </div>
+  <button class="btn btn-outline-primary my-2 my-sm-0 top-btns" type="submit" ><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+  <!--<div class="form-group">-->
+    <!--<input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control search-text" #search [formControl]="searchControl">-->
+  <!--</div>-->
+  <div class="form-group">
+    <input placeholder="search for location" type="text" class="form-control search-text">
+  </div>
+  <button class="btn btn-outline-primary my-2 my-sm-0 top-btns" type="submit" (click)="redirect()">Search<i class="fa fa-search" aria-hidden="true"></i></button>
+
+</div>
 
 <div class="row">
   <div class="col-sm-8 col-md-8 col-lg-8">
-    <h1>Search Results</h1>
-    <button type="button" class="btn btn-secondary" (click)="goHome()">Go Back</button>
-    <div style="height:600px;" id="map" >
+    <div style="height:475px;" id="map" >
 
     </div>
   </div>
@@ -18,18 +32,25 @@
         </div>
       </div>
     </form>
-    <div class="card-group" style="width: 20vw; margin-top: 25px;">
-      <div class="card" (click)="goToProfile()">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-block">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <accordion style="margin-top: 25px; display: block;">
+      <accordion-group [heading]="group.heading" *ngFor="let group of groups" style="font-family: 'Cantarell', sans-serif;">
+        <div *ngIf="group.heading!='Candidates'" class="row">
+          Not candidates
         </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
+        <accordion *ngIf="group.heading=='Candidates'" style="display: block; margin-left: 40px">
+          <accordion-group [heading]="ctype.name" *ngFor="let ctype of candidate_types" style="margin-left: 40px; font-family: 'Cantarell', sans-serif;">
+            <div class="card entity-card" *ngFor="let candidate of ctype.candidates" (click)="goToProfile(candidate)">
+              <div class="card-block candidate-card" style="border: 1px solid black; border-radius: 25px;">
+                <h4 class="card-title" style="margin-left: 10px;"><span>{{candidate.name}}</span></h4>
+                <div class="card-text" style="margin-left: 10px">
+                    Info here
+                </div>
+              </div>
+            </div>
+          </accordion-group>
+        </accordion>
+      </accordion-group>
+    </accordion>
   </div>
 </div>
 
