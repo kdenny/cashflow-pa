@@ -104,12 +104,13 @@ export class HomeComponent implements OnInit {
         window.navigator.geolocation.getCurrentPosition(
             position => {
                 this.geolocationPosition = position;
+
                 this.setMapView(this.geolocationPosition.coords)
                 let point = {
                     'latitude': this.geolocationPosition.coords.latitude,
                     'longitude': this.geolocationPosition.coords.longitude
                 }
-                this.api.getCandidates(point);
+                this.api.location = {'point': point};
             },
             error => {
                 switch (error.code) {

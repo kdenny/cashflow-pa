@@ -70,6 +70,10 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit() {
 
+      this.api.getCandidates(this.api.location).then(data => {
+          console.log(this.api.currentCandidates)
+      });
+
       function onEachFeature(feature, layer) {
             if (feature.properties && feature.properties.name) {
                 layer.bindPopup(feature.properties.name);
@@ -109,22 +113,6 @@ export class SearchResultsComponent implements OnInit {
       })
     });
 
-
-    //this.api.getData().then(data => {
-    //
-    //  this.layerGroup = L.geoJSON(data, {
-    //    onEachFeature: function (feature, layer) {
-    //      layer.bindPopup('' +
-    //        '<h1>District '+feature.properties.LEG_DISTRI+'</h1>' +
-    //        '<p>Name: '+feature.properties.H_LASTNAME+' '+feature.properties.H_FIRSTNAM+'</p>' +
-    //        '<p>Party: '+feature.properties.PARTY+'</p>'
-    //      );
-    //    }
-    //  }).addTo(this.map);
-    //
-    //  this.map.fitBounds(this.layerGroup.getBounds());
-    //
-    //})
 
     let a = {
       'd': 'd'

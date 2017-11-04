@@ -37,11 +37,11 @@
         <div *ngIf="group.heading!='Candidates'" class="row">
           Not candidates
         </div>
-        <accordion *ngIf="group.heading=='Candidates'" style="display: block; margin-left: 40px">
-          <accordion-group [heading]="ctype.name" *ngFor="let ctype of candidate_types" style="margin-left: 40px; font-family: 'Cantarell', sans-serif;">
-            <div class="card entity-card" *ngFor="let candidate of ctype.candidates" (click)="goToProfile(candidate)">
+        <accordion *ngIf="group.heading=='Candidates' && api.currentCandidates" style="display: block; margin-left: 40px">
+          <accordion-group [heading]="ctype.type" *ngFor="let ctype of api.currentCandidates.candidate_types" style="margin-left: 40px; font-family: 'Cantarell', sans-serif;">
+            <div class="card entity-card" *ngFor="let candidate of ctype.Candidates" (click)="goToProfile(candidate)">
               <div class="card-block candidate-card" style="border: 1px solid black; border-radius: 25px;">
-                <h4 class="card-title" style="margin-left: 10px;"><span>{{candidate.name}}</span></h4>
+                <h4 class="card-title" style="margin-left: 10px;"><span>{{candidate.s_last_name}} {{candidate.s_first_name}}</span></h4>
                 <div class="card-text" style="margin-left: 10px">
                     Info here
                 </div>

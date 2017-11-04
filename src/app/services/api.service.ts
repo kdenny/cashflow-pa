@@ -11,10 +11,11 @@ export class ApiService {
 
   geoData;
   private headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
-  //apiUrl = 'http://127.0.0.1:8000/geo/';
-  apiUrl = 'http://54.198.139.141/';
+  apiUrl = 'http://192.168.1.176:3000/';
+  //apiUrl = 'http://54.198.139.141/';
   transactions;
   currentCandidates;
+  location;
 
  constructor(private http: Http) {
 
@@ -36,6 +37,7 @@ export class ApiService {
    .then(response => {
        this.geoData = response.json();
        this.currentCandidates = response.json();
+       console.log(this.currentCandidates)
    })
    .catch(this.handleError)
  }
