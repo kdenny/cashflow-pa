@@ -14,6 +14,7 @@ export class ApiService {
   //apiUrl = 'http://127.0.0.1:8000/geo/';
   apiUrl = 'http://54.198.139.141/';
   transactions;
+  currentCandidates;
 
  constructor(private http: Http) {
 
@@ -32,7 +33,10 @@ export class ApiService {
     let candidateUrl = this.apiUrl + 'candidates/'
 
   return this.http.post(candidateUrl, location, options).toPromise()
-   .then(response => this.geoData = response.json())
+   .then(response => {
+       this.geoData = response.json();
+       this.currentCandidates = response.json();
+   })
    .catch(this.handleError)
  }
 

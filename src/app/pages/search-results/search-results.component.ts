@@ -20,6 +20,7 @@ export class SearchResultsComponent implements OnInit {
   map;
   baseMaps;
   isGroupOpen = false;
+  lightBlueIcon;
 
   groups: Array<any> = [
       {
@@ -69,6 +70,23 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit() {
 
+      function onEachFeature(feature, layer) {
+            if (feature.properties && feature.properties.name) {
+                layer.bindPopup(feature.properties.name);
+                }
+        }
+
+      this.lightBlueIcon = L.icon({
+        iconUrl: 'assets/leaflet/icon-lightblue-plus.png',
+        shadowUrl: 'assets/leaflet/marker-shadow.png',
+
+        iconSize:     [25, 41], // size of the icon
+        shadowSize:   [41, 41], // size of the shadow
+        iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
+        shadowAnchor: [12, 41],  // the same for the shadow
+        popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
+    });
+
     this.baseMaps = {
         CartoDB: L.tileLayer("http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
@@ -82,21 +100,15 @@ export class SearchResultsComponent implements OnInit {
       this.api.transactions.forEach(tr => {
         if (tr.point) {
           if (tr.point.latitude && tr.point.longitude) {
-            L.circle([tr.point.latitude, tr.point.longitude], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: 50
-            }).addTo(this.map);
+              let a = tr.name;
+            L.marker([tr.point.latitude, tr.point.longitude], {icon: this.lightBlueIcon}).addTo(this.map).bindPopup(a);
           }
 
         }
 
-        console.log(tr)
       })
     });
 
-    this.api.get
 
     //this.api.getData().then(data => {
     //
@@ -118,8 +130,6 @@ export class SearchResultsComponent implements OnInit {
       'd': 'd'
     };
 
-
-
   }
 
   goHome() {
@@ -127,7 +137,6 @@ export class SearchResultsComponent implements OnInit {
   }
 
   goToProfile(entity) {
-    console.log(entity)
     this.router.navigate(['/profile']);
   }
 
